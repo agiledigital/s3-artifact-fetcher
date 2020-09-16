@@ -20,7 +20,7 @@ if touch /etc/passwd && [ "$(id -u)" -ge 10000 ]; then
 fi
 
 echo "Retrieving artifacts from s3..."
-aws s3 sync --delete "${SOURCE_URL}" "${ARTIFACT_DIR}"
+aws s3 sync --delete "${SOURCE_URL}${COMPONENT}" "${ARTIFACT_DIR}"
 
 cd "${ARTIFACT_DIR}"
 echo "Verifying artifacts..."
