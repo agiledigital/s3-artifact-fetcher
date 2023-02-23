@@ -3,7 +3,7 @@
 # An image that can be used as an init container to fetch artifacts for runner containers from S3
 #
 
-FROM mesosphere/aws-cli:1.14.5@sha256:fb590357c2cf74e868cf110ede38daf4bdf0ebd1bdf36c21d256aa33ab22fa6e
+FROM amazon/aws-cli:2.10.2@sha256:75f8cf2ad8e18e6da8fa3698dcdefd5d0a0f0db6a3fb9f9bf2a7bc563a9ce367
 LABEL maintainer="Agile Digital <info@agiledigital.com.au>"
 LABEL description="An image that can be used as an init container to fetch artifacts for runner containers from S3" Vendor="Agile Digital" Version="0.1"
 
