@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 # Use the Unofficial Bash Strict Mode (Unless You Looove Debugging)
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
@@ -18,6 +18,13 @@ if touch /etc/passwd && [ "$(id -u)" -ge 10000 ]; then
     cat /tmp/passwd > /etc/passwd
     rm /tmp/passwd
 fi
+
+echo "Retrieving AWS credentials..."
+export TOKEN_CONTENT=$(cat $AWS_WEB_IDENTITY_TOKEN_FILE)
+export CREDENTIALS=$(aws sts assume-role-with-web-identity --role-arn $AWS_ROLE_ARN --role-session-name InitContainerSession --duration-seconds 900 --web-identity-token $TOKEN_CONTENT)
+export AWS_ACCESS_KEY_ID=$(echo "$CREDENTIALS" | grep AccessKeyId | cut -d '"' -f4)
+export AWS_SECRET_ACCESS_KEY=$(echo "$CREDENTIALS" | grep SecretAccessKey | cut -d '"' -f4)
+export AWS_SESSION_TOKEN=$(echo "$CREDENTIALS" | grep SessionToken | cut -d '"' -f4)
 
 echo "Retrieving artifacts from s3..."
 aws s3 sync --delete "${SOURCE_URL}" "${ARTIFACT_DIR}"

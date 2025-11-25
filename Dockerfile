@@ -5,7 +5,7 @@
 
 FROM amazon/aws-cli:2.10.2@sha256:75f8cf2ad8e18e6da8fa3698dcdefd5d0a0f0db6a3fb9f9bf2a7bc563a9ce367
 LABEL maintainer="Agile Digital <info@agiledigital.com.au>"
-LABEL description="An image that can be used as an init container to fetch artifacts for runner containers from S3" Vendor="Agile Digital" Version="1.1.0"
+LABEL description="An image that can be used as an init container to fetch artifacts for runner containers from S3" Vendor="Agile Digital" Version="1.2.0"
 
 ENV RUNNER_USER runner
 ENV HOME /home/${RUNNER_USER}
